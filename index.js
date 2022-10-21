@@ -22,13 +22,12 @@ function activate(image, x, y) {
 const distanceFromLast = (x,y) =>{
   return Math.hypot(x - last.x, y - last.y)
 }
-function start (){
+
   const di = document.getElementById('main')
   di.addEventListener('mousemove', (e)=>{
     controlMouse(e)
   })
-}
-start()
+
   //console.log(e)
   
 function controlMouse(e){
