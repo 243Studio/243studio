@@ -36,7 +36,7 @@ function controlMouse(e){
   if(distanceFromLast(e.clientX,e.clientY) > 100){
     
     const lead = images[globalIndex % images.length];
-    const tail = images[(globalIndex - 5) % images.length]
+    const tail = images[(globalIndex - 9) % images.length]
     
     activate(lead, e.clientX, e.clientY);
     if(tail) {
@@ -75,9 +75,3 @@ close.addEventListener('click', ()=>{
   notice.style.display = "block"
 })
 
-
-const refresh = document.getElementById('refresh')
-
-refresh.addEventListener('click', ()=>{
-  location.reload()
-})
