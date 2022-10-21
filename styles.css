@@ -15,20 +15,19 @@ main{
 }
 
 img {
-  width: 70vmin;
+  width: 40vmin;
   height: auto;
   position: absolute;
   transform: translate(-50%, -50%);
-
+  transition: 0.5s ease-in-out;
 }
 img[data-status="inactive"] {
   display: none;
-  transition: 0.5s cubic-bezier(.17,.67,.84,.52);
+  transition: 0.5s ease-in-out;
 }
 img[data-status="active"] {
   display: block;
-  transition: 0.5s cubic-bezier(.17,.67,.84,.52);
-
+  transition: 0.5s ease-in-out;
 }
 
 
