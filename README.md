@@ -1,2 +1,4 @@
 # 243studio
-Created with CodeSandbox
+
+
+This is a project to illustrate all my UI/UX, graphic design related works.
