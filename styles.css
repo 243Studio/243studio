@@ -15,6 +15,7 @@ main{
 }
 
 img {
+
   width: 30vmin;
   height: auto;
   position: absolute;
@@ -69,11 +70,4 @@ img[data-status="active"] {
   color: black;
 }
 
-#notice{
-  position:absolute;
-  color:white;
-  transform:  translate(60%,1000%);
-  display: none;
-  transition: 1s ease-in-out;
-}
 
