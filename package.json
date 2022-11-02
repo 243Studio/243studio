@@ -1,7 +1,7 @@
 {
   "name": "243studio",
   "version": "0.1.0",
-  "homepage": "https://LeGrandMAG.github.io/243studio",
+  "homepage": "https://243studio.github.io/243studio",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.3",
@@ -20,7 +20,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
