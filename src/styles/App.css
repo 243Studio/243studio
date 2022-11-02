@@ -20,12 +20,7 @@ body {
   height: 100%;
   color: white;
 }
-.ref{
-  position:absolute;
-  bottom: 0%;
-  left: 50%;
-  transform: translate(50%,50%);
-}
+
 .cursor{
   transform: translate(-50%,-50%);
   width: 20px;

@@ -4,16 +4,19 @@ import { Projects } from './Data/project';
 import {useEffect, useRef, useState} from 'react'
 import useMouse from '@react-hook/mouse-position'
 import Details from './components/Details'
+
+
 let globalIndex = 0;
 
 
 
 function App() {
 
+  
   const [pos, setPos] = useState({x:0, y:0})
   const [display, setDisplay] = useState(false)
   const [detailTitle, setDetailTitle] = useState("")
-  const [detailLink, setDetailLink] = useState("")
+  const [detailLink, setDetailLink] = useState([])
 
   const ref = useRef(null)
   const mouse = useMouse(ref, {
@@ -57,7 +60,7 @@ const distanceFromLast = (x,y) =>{
 useEffect(()=>{
   //console.log(pos.x, pos.y)
   controlMouse()
-},[pos.x, pos.y])
+},[pos.x])
   function position(e){
       setPos((prev)=>{
         
@@ -121,14 +124,16 @@ function controlMouse(){
         
         
         mouse.x!==null && mouse.y!==null && <a  onClick={()=>showDetails(image)}>
-          <img className='' alt={image.name} id={image.name}  key = {image.link} src= {image.link} /> 
+          <img className='' alt={image.name} id={image.name}  key = {image.link} src= {`${process.env.PUBLIC_URL}${image.link}`} /> 
           </a>
         
         )
 
   }
   )
+
   return (
+    <>
     <div onMouseMove={position} ref={ref} className="App">
 
 
@@ -142,14 +147,16 @@ function controlMouse(){
       
       
       //mouse.x!==null && mouse.y!==null && <div style={{top:mouse.y, left:mouse.x}} className='cursor'></div> 
-      }
+    }
 
+    </div>
+    <div style={{width:'100%', height: '50px', display:'flex', justifyContent:'center', alignItems:'center', backgroundColor:'white',top: '0%',left:'0%', position:'fixed', zIndex:1000000, color:'black'}}>
+        <h1>HELLO WORLD</h1>
       <p className="ref">    x: {pos.x} y: {pos.y}
   </p>
-      {Images
-      }
-     
     </div>
+      {Images}
+    </>
   );
 }
 
