@@ -95,10 +95,10 @@ img[data-status="active"] {
   text-align: center;
 }
 #next{
-  left:5%;
+  right:5%;
 }
 #previous{
-  right:5%;
+  left:5%;
 
 }
 .next-previous{
