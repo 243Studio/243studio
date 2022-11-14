@@ -150,6 +150,7 @@ function closeDescription(){
 function switchPage(e){
   index ++;
   let x = ""
+  let text = ""
   if(e.target.innerHTML === "NEXT"){
     x =  (index) % (images.length-1)
   }
@@ -157,14 +158,17 @@ function switchPage(e){
   else{
     x = ((images.length-1) - (index  % (images.length-1))) % (images.length-1)
   }
-  detailImg.setAttribute('src', Projects[x].link )
-  title.innerText = Projects[x].name
-  if(Projects[x].description.length > 0){
-    detailText.innerText = Projects[x].description
+  
+  if(Projects[x].description !== undefined){
+    text = Projects[x].description
   }
   else{
-    detailText.innerText=""
+    text = ""
   }
+  detailImg.setAttribute('src', Projects[x].link )
+  title.innerText = Projects[x].name
+  detailText.innerText = text
+
 }
 
 close.addEventListener('click', ()=>closeDescription())
