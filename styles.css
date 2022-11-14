@@ -52,8 +52,6 @@ img[data-status="active"] {
   transition: 1s ease-in-out;
 }
 
-.color{
-}
 
 
 #link{
@@ -151,8 +149,5 @@ img[data-status="active"] {
   display: block;
   filter:unset;
 
-
-}
-.detail-text{
 
 }
