@@ -163,7 +163,7 @@ function switchPage(e){
     detailText.innerText = Projects[x].description
   }
   else{
-    detailText=""
+    detailText.innerText=""
   }
 }
 
