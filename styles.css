@@ -15,7 +15,7 @@ main{
 }
 
 img {
-
+  display: none;
   width: 30vmin;
   height: auto;
   position: absolute;

@@ -6,7 +6,8 @@ export  const Projects = [
     },
     {
         name:"WEPO RDC",
-        link: '/assets/images/WEPO.png'
+        link: '/assets/images/WEPO.png',
+        description: "A cross-platform mobile application."
     },
     {
         name:"CARP RDC",
