@@ -4,13 +4,13 @@ import {Projects}  from "./Data/project.mjs";
 
 let images = document.getElementsByTagName("img");
 let lead =""
-console.log(images)
+//console.log(images)
 let detail = document.getElementById('detail-container')
 let main = document.getElementById('main')
 let detailImg = document.getElementById('description')
 const close = document.getElementById('end')
 let footer = document.getElementById("footer")
-console.log(main.style.display)
+//console.log(main.style.display)
 let globalIndex = 0;
 let last = {x:0, y:0 };
 let doc = document.getElementById('body')
@@ -23,10 +23,15 @@ let title = document.getElementById('title')
 let detailText =document.getElementById('detail-text')
 let t = 0
 let state = "on"
+let x = ""
+let mobile = document.getElementById('mobile')
 
+let mouse = document.getElementById('mouse')
+
+
+let e = (s)=> DOMPurify.sanitize(e)
 
 function activate(image, x, y) {
-  console.log(image)
   image.style.left = `${x}px`;
   image.style.top = `${y}px`;
   /*const r = document.getElementsByTagName("img")
@@ -42,7 +47,7 @@ function activate(image, x, y) {
   //let v = image.parentNode
   //v.setAttribute('href', Projects[image.dataset.index].link)
   //console.log(v)
-  console.log(image.dataset.index)
+  //console.log(image.dataset.index)
   image.style.zIndex = t
   last = { x, y } 
 }
@@ -128,7 +133,7 @@ function show(x){
 function toggleFooter(){
   if((window.scrollY - window.innerHeight) > 30){
     show("#footer")
-    console.log(window.scrollY + " and "  + window.innerHeight)
+    //console.log(window.scrollY + " and "  + window.innerHeight)
   }
   else if((window.scrollY) - parseInt(window.innerHeight) <= 30) {
     hide("#footer")
@@ -145,16 +150,19 @@ function closeDescription(){
   doc.style.overflow = "hidden"
   hide(".next-previous")
   hide('#end')
+  main.addEventListener('mousemove', (e)=>{
+    controlMouse(e)
+  })
 }
 
 function switchPage(e){
   index ++;
-  let x = ""
+  
   let text = ""
   if(e.target.innerHTML === "NEXT"){
     x =  (index) % (images.length-1)
   }
-
+  
   else{
     x = ((images.length-1) - (index  % (images.length-1))) % (images.length-1)
   }
@@ -165,6 +173,7 @@ function switchPage(e){
   else{
     text = ""
   }
+  //console.log(x)
   detailImg.setAttribute('src', Projects[x].link )
   title.innerText = Projects[x].name
   detailText.innerText = text
@@ -174,14 +183,17 @@ function switchPage(e){
 close.addEventListener('click', ()=>closeDescription())
 
 function screenSize(){
-  console.log(window.innerWidth)
-  if(window.innerWidth < 450){
-    doc.style.display="none"
-    alert("This website is only accessible on PC, Desktop or Mac")
+  console.log(window.outerWidth)
+  console.log()
+  if(window.outerWidth < 800){
+    main.style.display="none"
+    mobile.style.display="block"
+    //alert("This website is only accessible on PC, Desktop or Mac")
     return 1;
   }
   else{
-    doc.style.display="block"
+    main.style.display="block"
+    mobile.style.display="none"
   }
 }
 next.addEventListener('click', (e)=>switchPage(e))
@@ -189,3 +201,56 @@ previous.addEventListener('click', (e)=>switchPage(e))
 window.addEventListener('load', ()=> screenSize())
 
 window.addEventListener('resize', ()=>screenSize())
+
+function buttonPosition(e){
+  if(e.clientX > window.innerWidth - window.innerWidth/3)
+  {
+    //console.log(e)
+    //console.log(next.style)
+
+    next.style.transform='translate(-50%,-50%)'
+    next.style.position = 'absolute'
+    next.style.top = `${e.layerY}px`
+    next.style.left = `${e.layerX}px`
+    previous.style.top=`${window.innerHeight/2}px`
+    previous.style.left="5%"
+    mouse.style.display="none"
+    next.style.transition= 'unset'
+
+  }
+
+  else if (e.clientX < window.innerWidth - 2 * window.innerWidth/3)
+  {
+    previous.style.transform='translate(-50%,-50%)'
+    previous.style.position = 'absolute'
+    previous.style.top = `${e.layerY}px`
+    previous.style.left = `${e.layerX}px`
+
+    next.style.top=`${window.innerHeight/2}px`
+    next.style.left="unset"
+    next.style.right="5%"
+    mouse.style.display="none"
+
+  }
+  else{
+    mouse.style.display="block"
+    mouse.style.position="absolute"
+    mouse.style.top=`${e.layerY}px`
+    mouse.style.left= `${e.layerX}px`
+    //detail.style.cursor="default"
+    description.style.cursor="pointer"
+    previous.style.top=`${window.innerHeight/2}px`
+    previous.style.left="5%"
+    next.style.top=`${window.innerHeight/2}px`
+    next.style.left="unset"
+    next.style.right="5%"
+
+  }
+
+
+  //console.log(`${e.clientX} and ${e.clientY}`)
+
+
+}
+let containerD = document.getElementById('detail-container')
+containerD.addEventListener("mousemove", (e)=>{buttonPosition(e)})

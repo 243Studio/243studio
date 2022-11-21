@@ -8,7 +8,7 @@ export  const Projects = [
         name:"WEPO RDC",
         link: '/assets/images/WEPO.png',
         clien: "WEPO RDC",
-        description: "A cross-platform mobile application for 2nd hands products in DR Congo.",
+        description: "A cross-platform **mobile application** for 2nd hands products in DR Congo.",
         illustration: "/assets/mock"
     },
     {
@@ -25,7 +25,7 @@ export  const Projects = [
         
     },
     {
-        name:"Aldadin",
+        name:"## Aldadin ** hello ** ",
         link: "/assets/images/aldadin.png"
     },
     {
