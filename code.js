@@ -25,13 +25,48 @@ let t = 0
 let state = "on"
 let x = ""
 let mobile = document.getElementById('mobile')
-
+let loading = document.getElementById('loading')
 let mouse = document.getElementById('mouse')
 
+let direction = document.getElementById("direction")
+
+function PageLoad(doc, event){
+  let mm = doc.getElementsByClassName('img')
+  let loaded = 0
+  for(let i = 0; i < mm.length; i++)
+  {
+    if(mm[i].complete)
+    {
+      loaded ++;
+    }
+    else{
+      mm[i].addEventListener('load', function(){
+        loaded += 1;
+
+        if (loaded=== mm.length){
+          event()
+        }
+      })
+    }
+    if(loaded===mm.length){
+      event()
+    }
+    
+  }
+  console.log(mm.length, loaded)
+  
+}
+PageLoad(main, function(){
+  main.style.display="block"
+  loading.style.display="none"
+  direction.style.display='flex'
+  console.log("all the image are loaded")
+})
 
 let e = (s)=> DOMPurify.sanitize(e)
 
 function activate(image, x, y) {
+  direction.style.display="none"
   image.style.left = `${x}px`;
   image.style.top = `${y}px`;
   /*const r = document.getElementsByTagName("img")
@@ -150,6 +185,7 @@ function closeDescription(){
   doc.style.overflow = "hidden"
   hide(".next-previous")
   hide('#end')
+  hide('#mouse')
   main.addEventListener('mousemove', (e)=>{
     controlMouse(e)
   })
@@ -183,13 +219,12 @@ function switchPage(e){
 close.addEventListener('click', ()=>closeDescription())
 
 function screenSize(){
-  console.log(window.outerWidth)
-  console.log()
+
   if(window.outerWidth < 800){
     main.style.display="none"
     mobile.style.display="block"
+    direction.style.display="none"
     //alert("This website is only accessible on PC, Desktop or Mac")
-    return 1;
   }
   else{
     main.style.display="block"
