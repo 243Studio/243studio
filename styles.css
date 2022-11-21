@@ -110,11 +110,13 @@ img[data-status="active"] {
   all:unset;
   position: absolute;
   top: 50%;
-  color: white;
+  color: black;
+  background:white;
   display: none;
   cursor: none;
-  background: red;
   width: fit-content;
+  border: 1px solid black;
+  padding: 1px 5px
 }
 
 #end:hover{

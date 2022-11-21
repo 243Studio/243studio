@@ -180,12 +180,13 @@ function closeDescription(){
     img.dataset.status = "inactive"
   }
   hide("#detail-container")
-  main.removeAttribute("style")
+  
   close.style.display="none"
   doc.style.overflow = "hidden"
   hide(".next-previous")
   hide('#end')
   hide('#mouse')
+  show('#main')
   main.addEventListener('mousemove', (e)=>{
     controlMouse(e)
   })
