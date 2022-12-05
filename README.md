@@ -40,7 +40,7 @@ For local use, clone the project locally, follow the steps below:
 - Firefox 107.0
 -->
 ## License
-Quicky Meme is MIT licensed.
+243Studio Portfolio is a property of 243 Studio.
 
 
 
