@@ -3,79 +3,105 @@
   <head>
     <title>243 Porfolio</title>
 
-
+    
     <link rel="stylesheet" href="/styles.css">
-    <link rel="icon" type="image/x-icon" href="/data/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/243STUDIO.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
     <meta charset="UTF-8" />
   </head>
   
-  <body>
+  <p id="mobile"><strong>We are sorry!</strong><br><br>This website is only accessible on PC, Desktop or Mac.</p>
+  
+  <div id="loading">
+    <div class="load" id="load1">
+    </div>
+    <div class="load" id="load2">
+    </div>
+    
+  </div>
+  <body id="body">
+    <p id="direction"><strong>Mouve the mouse anywhere in the screen.</p>
+    
     <main id="main">
 
      
-        <a  id ="0" href="google.com">
 
           <img  class="img"
 
-          src="/data/images/243 STUDIO.jpg"
+          src="assets/images/243STUDIO.jpg"
           data-index="0"
           />
-        </a>
+
+   
+        <img class="img"
+        src="assets/images/WEPO.png"
+        data-index="1"
+        />
+
+        <img class="img"
+        src="assets/images/CARP.png"
+        data-index="2"
+        />
 
       <img class="img"
-      src="/data/images/WEPO.png"
-      data-index="1"
-      />
-      <img class="img"
-      src="/data/images/CARP.png"
-      data-index="2"
-      />
-      <img class="img"
-      src="/data/images/x2.png"
+      src="assets/images/x2.png"
       data-index="3"
       />
       <img class="img"
-      src="/data/images/x1.png"
+      src="assets/images/x1.png"
       data-index="4"
       />
       <img class="img"
-      src="/data/images/aldadin.png"
+      src="assets/images/aldadin.png"
 
       data-index="5"
       />
       <img class="img"
-      src="/data/images/christmas.png"
-      data-index="5"
-      />
-      <img class="img"
-      src="/data/images/Congo.png"
+      src="assets/images/christmas.png"
       data-index="6"
       />
       <img class="img"
-      src="/data/images/Culdi.png"
+      src="assets/images/Congo.png"
       data-index="7"
       />
       <img class="img"
-      src="/data/images/independance.png"
+      src="assets/images/Culdi.png"
       data-index="8"
       />
       <img class="img"
-      src="/data/images/tolibleu.png"
+      src="assets/images/independance.png"
       data-index="9"
+      />
+      <img class="img"
+      src="assets/images/tolibleu.png"
+      data-index="10"
       />
     </main>
 
-    <h2 id ="notice">
-      Refresh the page to see other to bring back the animation
-    </h2>
-      
-    <!--<button id="end">X</button>-->
-    <div class="footer">
 
-        <p>
-          Made by <a target="_blank" style="color: black;" href="https://github.com/243Studio">243 Studio</a>
-        </p>
+    <div id="detail-container">
+      <div id="detail" >
+        
+        <img id = "description" src="">
+        
+        <div class="detail-text">
+          <p id="text"></p>
+          <h1 id="title-container">Client: <strong id="title"></strong></h1>
+
+            <div id="detail-text"></div>
+          </div>
+        </div>
+      </div>
+   <button id="end">X</button>
+  <button  class="next-previous" id="next">NEXT</button>
+   <button  class="next-previous" id="previous">PREVIOUS</button>
+   <div id="mouse"></div>
+    <div class="footer" id="footer">
+
+          <a target="_blank" style="color: black;" href="https://github.com/243Studio">Made by 243 Studio</a>
     </div>
     <script type="module"  src="/code.js"></script>
+
+
   </body>
 </html>
