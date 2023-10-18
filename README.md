@@ -7,8 +7,4 @@
 ![image](https://github.com/243Studio/gif/raw/main/243studio.gif)
 
 ## License
-243Studio Portfolio is a property of 243 Studio.
-
-
-## License
-243Studio Portfolio is a property of 243 Studio.
+243Studio Portfolio is a property of 243 Studio 2023.
