@@ -8,11 +8,7 @@ let state = "on"
 function activate(image, x, y) {
   image.style.left = `${x}px`;
   image.style.top = `${y}px`;
-  /*const r = document.getElementsByTagName("img")
-  for (let t = 0; t< r.length; t++){
-    r[t].style.zIndex = 0
-  } */
-  //const p = r.map(item => item.style.zIndex = 0)
+
   image.dataset.status = "active";
   image.style.zIndex = t
   last = { x, y }
