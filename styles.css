@@ -79,6 +79,28 @@ img[data-status="active"] {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight:500
 }
+.footer-socials{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width:20vw;
+  padding: 0px 20px;
+  
+}
+.footer-socials a{
+  color: black;
+  font-size: 0.6rem;
+}
+.footer-socials a:hover{
+  color: rgb(69, 78, 173);
+}
+.socials{
+  text-decoration:none;
+  font-weight: lighter;
+  font-size: 5px;
+}
+
 #end{
   all:unset;
   position: fixed;
