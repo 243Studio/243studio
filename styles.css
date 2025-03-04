@@ -4,6 +4,7 @@
   background: rgb(20,20,20);
   margin: 0;
   height:100vh;
+  width:100vw;
   overflow:hidden;
   position: relative;
 }
@@ -14,11 +15,13 @@
   box-sizing: border-box;
   display: none;
   width: 100%;
+  overflow-y: hidden;
+
 }
 
 img {
   display: none;
-  width: 30vmin;
+  width: 20vmin;
   height: auto;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -149,29 +152,30 @@ img[data-status="active"] {
 
 
 #detail-container{
-  cursor: none;
   display: none;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   position: absolute;
   width:100%;
   height:fit-content;
   top:0%;
   left:0%;
+  overflow-y: hidden;
 }
 
 #detail{
-  height: fit-content;
+  height: 95vh;
   width: 65%;
   background-color: rgb(250,250,250);
-  justify-content: center;
   box-sizing: border-box;
-  padding: 0% 8% 5% 8%;
+  padding: 2% 5% 5% 5%;
   margin: 0 auto;
   z-index: -100;
   flex-direction: column;
   display: flex;
+  overflow-y: auto;
+  scrollbar-width: 30vw;
+  scrollbar-color:  rgb(69, 78, 173) red;
 }
 
 
@@ -179,7 +183,7 @@ img[data-status="active"] {
   all:unset;
   cursor: none;
   align-self: center;
-  width:80%;
+  width:50%;
   height: auto;
   display: block;
   filter:unset;
@@ -194,10 +198,10 @@ img[data-status="active"] {
   opacity:0.8;
   cursor: none;
   border-radius: 100%;
-
   display: none;
   mix-blend-mode: difference;
   filter: saturate(0);
+  transform:translate(-50%,-50%);
 }
 #mobile{
   position:absolute;
@@ -237,7 +241,13 @@ img[data-status="active"] {
   transition: 0.5s ease-in-out;
 
 }
+#detail{
+  
+}
 
+#detail-text{
+  font-weight: unset;
+}
 .load{
   width: 30px;
   height:5px;

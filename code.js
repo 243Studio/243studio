@@ -1,32 +1,33 @@
-import {Projects}  from "./Data/project.mjs";
+let Projects;
+fetch("https://243studio.github.io/projects/projects.json")
+  .then(response => response.json()) // Parse JSON
+  .then(data => {
+    Projects = data
+  }) // Work with JSON data
+  .catch(error => console.error('Error fetching JSON:', error));
 
-
-
+let marked = window.marked
 let images = document.getElementsByTagName("img");
 let lead =""
-//console.log(images)
 let detail = document.getElementById('detail-container')
 let main = document.getElementById('main')
 let detailImg = document.getElementById('description')
 const close = document.getElementById('end')
 let footer = document.getElementById("footer")
-//console.log(main.style.display)
 let globalIndex = 0;
 let last = {x:0, y:0 };
 let doc = document.getElementById('body')
-let complete = 0
 let index = 0
-let nextPrevious = document.getElementsByClassName("next-previous")
 let next = document.getElementById('next')
 let previous = document.getElementById('previous')
 let title = document.getElementById('title')
 let detailText =document.getElementById('detail-text')
 let t = 0
 let state = "on"
-let x = ""
 let mobile = document.getElementById('mobile')
 let loading = document.getElementById('loading')
 let mouse = document.getElementById('mouse')
+let detailz = document.getElementById('detail')
 
 let direction = document.getElementById("direction")
 
@@ -53,14 +54,12 @@ function PageLoad(doc, event){
     }
     
   }
-  console.log(mm.length, loaded)
   
 }
 PageLoad(main, function(){
   main.style.display="block"
   loading.style.display="none"
   direction.style.display='flex'
-  console.log("all the image are loaded")
 })
 
 let e = (s)=> DOMPurify.sanitize(e)
@@ -81,8 +80,6 @@ function activate(image, x, y) {
   image.style.filter="unset"
   //let v = image.parentNode
   //v.setAttribute('href', Projects[image.dataset.index].link)
-  //console.log(v)
-  //console.log(image.dataset.index)
   image.style.zIndex = t
   last = { x, y } 
 }
@@ -96,7 +93,6 @@ const distanceFromLast = (x,y) =>{
   })
 
   //console.log(e)
-  
 function controlMouse(e){
 
   if(distanceFromLast(e.clientX,e.clientY) > 100){
@@ -115,11 +111,9 @@ function controlMouse(e){
 
 
    for (let i = 0; i < images.length; i++){
-    ///console.log((globalIndex + i)  % images.length )
     //images[(globalIndex  % images.length) - i ].style.zIndex = 10 - i
   }
 
-  //console.log(lead.style.zIndex)
   globalIndex++;
   t ++;
   }
@@ -132,13 +126,12 @@ function display(lead){
   show(".next-previous")
   show('#end')
   doc.style.height="fit-content"
-  doc.style.overflowY= "scroll"
   close.style.display="block"
   detail.classList.remove('fadeOut')
   detailImg.setAttribute('src', Projects[index].link)
   detailImg.style.filter="unset"
   title.innerText = Projects[index].name
-  detailText.innerText = Projects[index].description ? Projects[index].description : ""
+  detailText.innerHTML = Projects[index].description ? marked.parse(Projects[index].description) : ""
   doc.style.width="100%"
   doc.style.height="100vh"
 }
@@ -149,9 +142,7 @@ function clear(){
   }
 }
 
-function buttonFollowMouse(e){
-  return 1;
-}
+
 
 function hide(x){
   gsap.to(x,{opacity:0})
@@ -165,15 +156,7 @@ function show(x){
 
 }
 
-function toggleFooter(){
-  if((window.scrollY - window.innerHeight) > 30){
-    show("#footer")
-    //console.log(window.scrollY + " and "  + window.innerHeight)
-  }
-  else if((window.scrollY) - parseInt(window.innerHeight) <= 30) {
-    hide("#footer")
-  }
-}
+
 
 function closeDescription(){
   for (let img of images){
@@ -193,28 +176,31 @@ function closeDescription(){
 }
 
 function switchPage(e){
-  index ++;
+  if (typeof index === "undefined"){
+    index = 0
+  }
   
-  let text = ""
+  let text = "";
   if(e.target.innerHTML === "NEXT"){
-    x =  (index) % (images.length-1)
+    index =  ((index + 1) % (images.length - 1))
+    
   }
   
-  else{
-    x = ((images.length-1) - (index  % (images.length-1))) % (images.length-1)
+  else if(e.target.innerHTML === "PREVIOUS"){
+
+    index = ((index - 1) + (images.length - 1 )) % (images.length - 1)
+  
   }
   
-  if(Projects[x].description !== undefined){
-    text = Projects[x].description
+  if(Projects[index].description !== undefined){
+    text = Projects[index].description
   }
   else{
     text = ""
   }
-  //console.log(x)
-  detailImg.setAttribute('src', Projects[x].link )
-  title.innerText = Projects[x].name
-  detailText.innerText = text
-
+  detailImg.setAttribute('src', Projects[index].link )
+  title.innerText = Projects[index].name
+  detailText.innerHTML = marked.parse(text);
 }
 
 close.addEventListener('click', ()=>closeDescription())
@@ -237,12 +223,23 @@ previous.addEventListener('click', (e)=>switchPage(e))
 window.addEventListener('load', ()=> screenSize())
 
 window.addEventListener('resize', ()=>screenSize())
+window.addEventListener('keydown', e => {
+  if(detail.style.display !== "none"){
 
+    if (e.key == "ArrowUp") {
+      
+      detailz.scrollBy({ top: -50, behavior: 'smooth' });
+    } 
+    else if (e.key == "ArrowDown") {
+      detailz.scrollBy({ top: 50, behavior: 'smooth' });
+      
+    }
+  }
+});
 function buttonPosition(e){
-  if(e.clientX > window.innerWidth - window.innerWidth/3)
+  if(e.clientX > (window.innerWidth - (window.innerWidth * 17.5 / 100) ))
   {
-    //console.log(e)
-    //console.log(next.style)
+
 
     next.style.transform='translate(-50%,-50%)'
     next.style.position = 'absolute'
@@ -255,7 +252,7 @@ function buttonPosition(e){
 
   }
 
-  else if (e.clientX < window.innerWidth - 2 * window.innerWidth/3)
+  else if (e.clientX < (window.innerWidth - (window.innerWidth - (window.innerWidth * 17.5 / 100) )))
   {
     previous.style.transform='translate(-50%,-50%)'
     previous.style.position = 'absolute'
@@ -273,7 +270,7 @@ function buttonPosition(e){
     mouse.style.position="absolute"
     mouse.style.top=`${e.layerY}px`
     mouse.style.left= `${e.layerX}px`
-    //detail.style.cursor="default"
+    detail.style.cursor="default"
     description.style.cursor="pointer"
     previous.style.top=`${window.innerHeight/2}px`
     previous.style.left="5%"
@@ -284,7 +281,6 @@ function buttonPosition(e){
   }
 
 
-  //console.log(`${e.clientX} and ${e.clientY}`)
 
 
 }
